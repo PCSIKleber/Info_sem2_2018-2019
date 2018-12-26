@@ -17,6 +17,19 @@ idoines sans quoi GithubDesktop ne saura pas les reconnaître et vous ne
 pourrez pas les mettre à jour correctement. Laissez donc tout en place et tout 
 devrait bien se passer.
 
+Deadlines
+---------
+
+* PP06: jeudi 10 janvier à 20h
+* PP07: jeudi 17 janvier à 20h
+* PP08: jeudi 24 janvier à 20h
+* PP09: jeudi 31 janvier à 20h
+* PP10: jeudi 07 février à 20h
+* TP08: mardi 12 février à 20h
+* PP11: jeudi 14 février à 20h
+* PP12: jeudi 07 mars à 20h
+* TP09: mardi 12 mars à 20h
+
 Descriptif rapide de la structure
 ---------------------------------
 
