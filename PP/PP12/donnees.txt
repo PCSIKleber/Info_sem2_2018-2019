@@ -1,0 +1,2 @@
+# Vitesse	Hauteur	distance_a_chercher constante_de_frottement
+60.0		2.5		42.0                0.6
