@@ -24,10 +24,11 @@ if __name__ == '__main__': import test_TP09 as testeur
 # ***************************************************************************
 
 def integration_rectangle(f,a,b,n):
-    return "Not good..."
+    pas=(b-a)/n
+    return sum([f(a+k*pas) for k in range(n)])*pas
 
 # Ligne suivante a decommenter pour tester
-if __name__ == '__main__': testeur.fais_tests('01_rectangle')
+#if __name__ == '__main__': testeur.fais_tests('01_rectangle')
 
 
 # ***************************************************************************
@@ -35,7 +36,8 @@ if __name__ == '__main__': testeur.fais_tests('01_rectangle')
 # ***************************************************************************
 
 def integration_trapeze(f,a,b,n):
-    return "Not good..."
+    pas=(b-a)/n
+    return sum([(f(a+k*pas)+f(a+(k+1)*pas)) for k in range(n)])*pas/2
 
 # Ligne suivante a decommenter pour tester
 #if __name__ == '__main__': testeur.fais_tests('02_trapeze')
@@ -46,7 +48,15 @@ def integration_trapeze(f,a,b,n):
 # ***************************************************************************
 
 def zero_dichotomie(f,a,b,epsilon=1e-6):
-    return "Not good..."
+    d=a
+    g=b
+    while abs(g-d)>epsilon:
+        m=(d+g)/2
+        if f(m)*f(d)<=0:
+            g=m
+        else:
+            d=m
+    return m
 
 # Ligne suivante a decommenter pour tester
 #if __name__ == '__main__': testeur.fais_tests('03_dichotomie')
@@ -57,7 +67,10 @@ def zero_dichotomie(f,a,b,epsilon=1e-6):
 # ***************************************************************************
 
 def triangle(x):
-    return "Pas cela en tous cas..."
+    if 1<=x<=2: return 0
+    elif 2<=x<=3: return x-2
+    elif 3<=x<=4: return 4-x
+    else: return 0
 
 # Ligne suivante a decommenter pour tester
 #if __name__ == '__main__': testeur.fais_tests('04_triangle')
@@ -67,8 +80,31 @@ def triangle(x):
 # cette fonction.
 # ***************************************************************************
 
-def tirage_triangle():
-    pass
+def repartition_triangle(x):
+    if 1<=x<=2: return 0
+    elif 2<=x<=3: return ((x-2)**2)/2
+    elif 3<=x<=4: return 1-(0.5)*(4-x)**2
+    else: return 1
+    
+    
+import math    
+    
+def repartition_triangle_inv(y):
+    if 0<=y<=0.5: return 2+math.sqrt(2*y)
+    elif 0.5<=y<=1: return 4-math.sqrt(2)*math.sqrt(1-y)  
+    
+import random
+import matplotlib.pyplot as plt
+
+
+def tirage_triangle(nb_tirage=10):
+    liste=[0]*nb_tirage
+    for i in range(nb_tirage):
+        liste[i]=repartition_triangle_inv(random.random())
+    plt.hist(liste,bins=32,range=(2,4))
+    plt.show()
+
+
 
 # Ligne suivante a decommenter uniquement quand vous voulez faire votre tirage
 # et effectivement produire votre graphique (les calculs sont longs...)
@@ -82,8 +118,24 @@ def tirage_triangle():
 # normalisee de sorte que son integrale de 0 a 20 ait pour valeur 1
 # ***************************************************************************
 
+
+f=lambda x: math.exp(-(x-10)**2/18)
+
+integrale_gauss=integration_trapeze(f,0,20,1000)
+
+
+
 def gauss_normalisee(x):
-    return "Pas cela en tous cas..."
+    return f(x)/integrale_gauss
+    
+repartition_gauss = lambda x: integration_trapeze(gauss_normalisee,0,x,100)
+
+def repartition_gauss_inv(y):
+    h=lambda x: repartition_gauss(x)-y
+    return zero_dichotomie(h,0,20,epsilon=1e-6)
+    
+    
+
 
 # Ligne suivante a decommenter pour tester
 #if __name__ == '__main__': testeur.fais_tests('05_gauss')
@@ -94,8 +146,12 @@ def gauss_normalisee(x):
 # cette fonction.
 # ***************************************************************************
 
-def tirage_gauss():
-    pass
+def tirage_gauss(nb_tirage=1000):
+    liste=[0]*nb_tirage
+    for i in range(nb_tirage):
+        liste[i]=repartition_gauss_inv(random.random())
+    plt.hist(liste,bins=32,range=(0,20))
+    plt.show()
 
 # Ligne suivante a decommenter uniquement quand vous voulez faire votre tirage
 # et effectivement produire votre graphique (les calculs sont longs, mais on
