@@ -94,11 +94,13 @@ def gagnant_tour1(vote):
 # Ligne suivante a decommenter pour tester
 #if __name__ == '__main__': testeur.fais_tests('09_tour1')
 
-def gagnant_tour1_bis(vote):
     return "Not good..."
 
 # Ligne suivante a decommenter pour tester
 #if __name__ == '__main__': testeur.fais_tests('10_tour1_bis')
+
+
+print(k)
 
 def gagnant_tour2(vote):
     return "Not good..."
