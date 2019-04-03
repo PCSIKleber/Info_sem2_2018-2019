@@ -48,7 +48,9 @@ def etats_suivants_euler(m,pos,vit,dt):
     new_pos = [[0,0,0] for i in range(N)] # On fournit gracieusement l'initialisation
     new_vit = [[0,0,0] for i in range(N)] # On fournit gracieusement l'initialisation
 
-#if __name__ == '__main__': testeur.fais_tests('03_etats_suivants_euler')
+#if __name__ == '__main__': testeur.fais_tests('03_etats_suivants_euler_court') 
+#if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long_court') 
+#if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long')
 
 def positions_suivantes_verlet(m,pos,vit,dt):
     """ Doit renvoyer la liste des positions suivantes de chaque particule 
@@ -58,7 +60,8 @@ def positions_suivantes_verlet(m,pos,vit,dt):
     return new_pos
 
 # Ligne suivante a decommenter pour tester 
-#if __name__ == '__main__': testeur.fais_tests('04_positions_suivantes_verlet')
+#if __name__ == '__main__': testeur.fais_tests('05_positions_suivantes_verlet_court') 
+#if __name__ == '__main__': testeur.fais_tests('06_positions_suivantes_verlet_long')
 
 def etats_suivants_verlet(m,pos,vit,dt):
     """ Doit renvoyer les listes des positions et vitesses suivantes de chaque 
@@ -68,7 +71,8 @@ def etats_suivants_verlet(m,pos,vit,dt):
     return [[]],[[]]
 
 # Ligne suivante a decommenter pour tester 
-#if __name__ == '__main__': testeur.fais_tests('05_etats_suivants_verlet')
+#if __name__ == '__main__': testeur.fais_tests('07_etats_suivants_verlet_court') 
+#if __name__ == '__main__': testeur.fais_tests('08_etats_suivants_verlet_long')
 
 
 # Ne vous restera plus qu'a generer le graphe demande et le stocker sous le 
