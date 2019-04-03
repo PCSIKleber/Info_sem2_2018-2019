@@ -50,6 +50,7 @@ def etats_suivants_euler(m,pos,vit,dt):
 
 #if __name__ == '__main__': testeur.fais_tests('03_etats_suivants_euler_court') 
 #if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long_court') 
+#if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long_court') 
 #if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long')
 
 def positions_suivantes_verlet(m,pos,vit,dt):
