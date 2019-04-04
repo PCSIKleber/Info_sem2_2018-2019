@@ -24,17 +24,32 @@ if __name__ == '__main__': import test_TP11 as testeur
 # ***************************************************************************
 
 def force2(m1,p1,m2,p2):
-    """ Calcule la force gravitationnelle que la particule 2 exerce sur la 
+    """ Calcule la force gravitationnelle que la particule 2 exerce sur la
     particule 1. """
-    return []
+    f = [0]*3
+    r2 = 0
+    for i in range(3):
+        r2 = r2 + (p1[i]-p2[i])**2
+    r = r2**0.5
+    for i in range(3):
+        f[i] = -m1*m2 / r**3 * (p1[i]-p2[i])
+    return f
 
 # Ligne suivante a decommenter pour tester 
 #if __name__ == '__main__': testeur.fais_tests('01_force2')
 
 def forceN(j,m,pos):
-    """ Calcule la force gravitationnelle totale que les N-1 autres particules 
+    """ Calcule la force gravitationnelle totale que les N-1 autres particules
     exercent sur la particule j. """
-    return []
+    mj = m[j]
+    pj = pos[j]
+    F = [0]*3
+    for i in range(len(pos)):
+        if i != j :
+            f = force2(mj,pj,m[i],pos[i])
+            for k in range(3):
+                F[k] += f[k]
+    return F
 
 # Ligne suivante a decommenter pour tester 
 #if __name__ == '__main__': testeur.fais_tests('02_forceN')
@@ -47,10 +62,15 @@ def etats_suivants_euler(m,pos,vit,dt):
     N = len(pos)
     new_pos = [[0,0,0] for i in range(N)] # On fournit gracieusement l'initialisation
     new_vit = [[0,0,0] for i in range(N)] # On fournit gracieusement l'initialisation
+    for i in range(N):   #boucle sur le nombre de particules
+         force=forceN(i,m,pos)
+         for j in range(3): #boucle sur les coordonnées
+            new_pos[i][j]=pos[i][j]+dt*vit[i][j]
+            new_vit[i][j]=vit[i][j]+dt*force[j]/m[i]
 
-#if __name__ == '__main__': testeur.fais_tests('03_etats_suivants_euler_court') 
-#if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long_court') 
-#if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long_court') 
+    return(new_pos,new_vit)
+
+if __name__ == '__main__': testeur.fais_tests('03_etats_suivants_euler_court') 
 #if __name__ == '__main__': testeur.fais_tests('04_etats_suivants_euler_long')
 
 def positions_suivantes_verlet(m,pos,vit,dt):
